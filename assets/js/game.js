@@ -67,31 +67,37 @@ var fight = function(enemyName) {
     }
   };
 
-// Call the fight function with a loop
-for (var i = 0; i < enemyNames.length; i++) {
+// Function to start a new game
+var startGame = function() {
+  // Reset player stats
+  playerHealth = 100;
+  playerAttack = 10;
+  playerMoney = 10;
+
+  // Call the fight function with a loop
+  for (var i = 0; i < enemyNames.length; i++) {
     if (playerHealth > 0) {
-        // Let player know what round they are in, arrays start at 0 so it needs to have 1 added to it
-        window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
+      // Let player know what round they are in, arrays start at 0 so it needs to have 1 added to it
+      window.alert("Welcome to Robot Gladiators! Round " + ( i + 1 ) );
 
-        // Pick new enemy to fight based on the index of the enemyNames array
-        var pickedEnemyName = enemyNames[i];
+      // Pick new enemy to fight based on the index of the enemyNames array
+      var pickedEnemyName = enemyNames[i];
 
-        // Reset enemyHealth before starting new fight
-        enemyHealth = 50;
+      // Reset enemyHealth before starting new fight
+      enemyHealth = 50;
 
-        // Use debugger to pause script from running and check what's going on at that moment in the code
-        // debugger;
-
-        // Pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
-        fight(pickedEnemyName);
+      // Pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
+      fight(pickedEnemyName);
     }
     else {
-        window.alert("You have lost your robot in battle! Game Over!");
-        break;
+      window.alert("You have lost your robot in battle! Game Over!");
+      break;
     }
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    fight(pickedEnemyName);
-}
-    // Call fight function with enemy robot
-    fight(enemyNames[i]);
+  }
+
+  // Play again
+  startGame();
+};
+
+// Start the game when the page loads
+startGame();
